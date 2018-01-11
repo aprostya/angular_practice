@@ -9,7 +9,7 @@ export class GameControlComponent implements OnInit {
   @Output() intervalFired = new EventEmitter<number>();
   @Output ('customInt') customInterval = new EventEmitter<number>();
   interval;
-  customInterval;
+  customEvent;
   lastNumber = 0;
   customNumber = 0;
   flag = 'even';
@@ -24,6 +24,12 @@ export class GameControlComponent implements OnInit {
       this.intervalFired.emit(this.lastNumber + 1);
       this.lastNumber++;
     }, 1000);
+  }
+    onShowText() {
+    this.customEvent = setInterval(() => {
+      this.customInterval.emit(this.customNumber + 1);
+      this.customNumber++;
+    }, 2000);
   }
 
   onPauseGame() {

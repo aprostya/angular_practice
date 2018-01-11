@@ -10,6 +10,7 @@ export class AppComponent {
   evenNumbers: number[] = [];
   custInt;
   flag = 'even';
+  flag_for_text = 'true';
 
   @Output () onIntervalFired(firedNumber: number) {
     if (firedNumber % 2 === 0) {
