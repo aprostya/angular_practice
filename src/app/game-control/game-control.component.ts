@@ -1,0 +1,42 @@
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-game-control',
+  templateUrl: './game-control.component.html',
+  styleUrls: ['./game-control.component.css']
+})
+export class GameControlComponent implements OnInit {
+  @Output() intervalFired = new EventEmitter<number>();
+  @Output ('customInt') customInterval = new EventEmitter<number>();
+  interval;
+  customInterval;
+  lastNumber = 0;
+  customNumber = 0;
+  flag = 'even';
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  onStartGame() {
+    this.interval = setInterval(() => {
+      this.intervalFired.emit(this.lastNumber + 1);
+      this.lastNumber++;
+    }, 1000);
+  }
+
+  onPauseGame() {
+    clearInterval(this.interval);
+  }
+  @Output() onGameTurnover() {
+    if (this.flag === 'odd') {
+      alert ('Okay');
+      console.log(this.flag);
+    } else {
+      alert('Wrong');
+      console.log(this.flag);
+    }
+  }
+
+}
